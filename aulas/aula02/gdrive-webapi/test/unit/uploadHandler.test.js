@@ -1,9 +1,15 @@
+
 import {
     describe,
     test,
     expect,
+    beforeEach,
     jest
 } from '@jest/globals'
+import fs from 'fs'
+import { resolve } from 'path'
+import { pipeline } from 'stream/promises'
+import { logger } from '../../src/logger.js'
 import UploadHandler from '../../src/uploadHandler.js'
 import TestUtil from '../_util/testUtil.js'
 import Routes from './../../src/routes.js'
@@ -40,6 +46,34 @@ describe('#UploadHandler test suite', () => {
             expect(uploadHandler.onFile).toHaveBeenCalled()
 
             expect(onFinish).toHaveBeenCalled()
+        })
+    })
+
+    describe('#onFile', () => {
+        test('given a stream file it should save it on disk', async () => {
+            const chunks = ['hey', 'dude']
+            const downloadsFolder = '/tmp'
+            const handler = new UploadHandler({
+                io: ioObj,
+                socketId: '01',
+                downloadsFolder
+            })
+            
+            const onData = jest.fn()
+            jest.spyOn(fs, fs.createReadStream.name)
+                .mockImplementation( () => TestUtil.generateWritebleStream(onData) )
+
+            const onTransform = jest.fn()
+            jest.spyOn(handler, handler.handleFileBytes.name)
+                .mockImplementation( () => TestUtil.generateTransformStream(onTransform))
+
+            const params = {
+                fieldname: 'gabriel',
+                file: TestUtil.generateReadbleStream(chunks),
+                filename: 'mockFile.mov'
+
+            }
+
         })
     })
 

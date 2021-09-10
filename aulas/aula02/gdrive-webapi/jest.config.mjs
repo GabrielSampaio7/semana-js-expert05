@@ -1,6 +1,5 @@
 /*
  * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
  */
 
 export default {
@@ -22,13 +21,11 @@ export default {
       statements: 100
     }
   },
-
   watchPathIgnorePatterns: [
     "node_modules"
   ],
-  transformIgnorePattern: ["node_modules "],
+  transformIgnorePatterns: ["node_modules"],
   collectCoverageFrom: [
     "src/**/*.js", "!src/**/index.js"
-  ]
-
+  ],
 };

@@ -14,41 +14,41 @@ describe('#FileHelper', () => {
     describe('#getFileStatus', () => {
         test('it should return files statuses in correct format', async () => {
             const statMock = {
-                dev: 2197134738,
-                mode: 33206,
+                dev: 16777220,
+                mode: 33188,
                 nlink: 1,
-                uid: 0,
-                gid: 0,
+                uid: 501,
+                gid: 20,
                 rdev: 0,
                 blksize: 4096,
-                ino: 6192449487672461,
-                size: 266465,
-                blocks: 528,
-                atimeMs: 1631139995061.9277,
-                mtimeMs: 1631139994980,
-                ctimeMs: 1631139994979.9272,
-                birthtimeMs: 1631139951141.6152,
-                atime: '2021-09-08T22:26:35.062Z',
-                mtime: '2021-09-08T22:26:34.980Z',
-                ctime: '2021-09-08T22:26:34.980Z',
-                birthtime: '2021-09-08T22:25:51.142Z'
+                ino: 214187433,
+                size: 188188,
+                blocks: 368,
+                atimeMs: 1630702590337.3582,
+                mtimeMs: 1630702588444.2876,
+                ctimeMs: 1630702588452.0754,
+                birthtimeMs: 1630702588443.3276,
+                atime: '2021-09-03T20:56:30.337Z',
+                mtime: '2021-09-03T20:56:28.444Z',
+                ctime: '2021-09-03T20:56:28.452Z',
+                birthtime: '2021-09-03T20:56:28.443Z'
             }
 
-            const mockUser = 'undefined'
+            const mockUser = 'erickwendel'
             process.env.USER = mockUser
             const filename = 'file.png'
 
             jest.spyOn(fs.promises, fs.promises.readdir.name)
                 .mockResolvedValue([filename])
-
+            
             jest.spyOn(fs.promises, fs.promises.stat.name)
                 .mockResolvedValue(statMock)
-
+            
             const result = await FileHelper.getFilesStatus("/tmp")
 
             const expectedResult = [
                 {
-                    size: "266 kB",
+                    size: "188 kB",
                     lastModified: statMock.birthtime,
                     owner: mockUser,
                     file: filename

@@ -1,3 +1,4 @@
+  
 export default class ConnectionManager {
     constructor({ apiUrl }) {
         this.apiUrl = apiUrl
@@ -14,23 +15,24 @@ export default class ConnectionManager {
     onConnect(msg) {
         console.log('connected!', this.ioClient.id)
         this.socketId = this.ioClient.id
+
     }
 
-    async uploadFile(file){
+    async uploadFile(file) {
         const formData = new FormData()
         formData.append('files', file)
 
-        const response = await fetch(`${this.apiUrl}?socketId=${this.socketId}`,{
-            method: 'POST',
+        const respose = await fetch(`${this.apiUrl}?socketId=${this.socketId}`, {
+            method:'POST',
             body: formData
         })
 
-        return response.json()
+        return respose.json()
+
     }
 
     async currentFiles() {
         const files = (await (await fetch(this.apiUrl)).json())
         return files
     }
-
 }

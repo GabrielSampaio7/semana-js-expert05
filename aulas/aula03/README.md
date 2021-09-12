@@ -4,6 +4,10 @@ Seja bem vindo(a) à quinta Semana Javascript Expert. Este é o código inicial 
 
 Marque esse projeto com uma estrela 🌟
 
+### Considerações
+
+Este projeto foi realizado de acordo com a Semana JS Expert. Ministrado pelo Erick Wendel e reproduzido por mim, Gabriel Sampaio.
+
 ## Preview
 
 ![](./resources/demo.gif)
@@ -22,8 +26,8 @@ Marque esse projeto com uma estrela 🌟
     - [X] Deve listar arquivos baixados
     - [X] Deve permitir fazer upload de arquivos de qualquer tamanho
     - [X] Deve ter função de upload via botão
-    - [] Deve exibir progresso de upload 
-    - [] Deve ter função de upload via drag and drop
+    - [X] Deve exibir progresso de upload 
+    - [X] Deve ter função de upload via drag and drop
 
 
 
